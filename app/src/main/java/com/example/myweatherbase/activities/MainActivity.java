@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
 import com.example.myweatherbase.activities.model.Root;
@@ -17,21 +20,16 @@ import java.util.Date;
 
 public class MainActivity extends BaseActivity implements CallInterface {
 
-    private TextView txtView ;
-    private TextView textViewDay;
-    private TextView textViewDayOfWeek;
-    private ImageView imageView;
+    private RecyclerView recycler;
+    AdaptadorRecycleView adaptador;
     private Root root;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtView = findViewById(R.id.txtView);
-        textViewDay = findViewById(R.id.textViewDay);
-        textViewDayOfWeek = findViewById(R.id.textViewDayOfWeek);
-        txtView = findViewById(R.id.txtView);
-        imageView = findViewById(R.id.imageView);
+
+
 
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
         showProgress();
@@ -48,13 +46,10 @@ public class MainActivity extends BaseActivity implements CallInterface {
     @Override
     public void doInUI() {
         hideProgress();
-        txtView.setText(root.list.get(0).weather.get(0).description);
-        ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + root.list.get(0).weather.get(0).icon + Parameters.ICON_URL_POST, imageView);
-
-        Date date = new Date((long)root.list.get(0).dt*1000);
-        SimpleDateFormat dateDayOfWeek = new SimpleDateFormat("E");
-        SimpleDateFormat dateDay = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
-        textViewDayOfWeek.setText(dateDayOfWeek.format(date));
-        textViewDay.setText(dateDay.format(date));
+        recycler=findViewById(R.id.rcTiempo);
+        adaptador = new AdaptadorRecycleView(this, root);
+        recycler.setAdapter(adaptador);
+        adaptador.setLayout_displayed(R.layout.simple_element);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
     }
 }
