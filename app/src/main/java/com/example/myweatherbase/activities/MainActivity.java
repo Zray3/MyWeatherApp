@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.model.City;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.BaseActivity;
 import com.example.myweatherbase.base.CallInterface;
@@ -20,15 +21,20 @@ import java.util.Date;
 
 public class MainActivity extends BaseActivity implements CallInterface {
 
+    private TextView ciudad;
     private RecyclerView recycler;
     AdaptadorRecycleView adaptador;
     private Root root;
+
+    private City ciudadsel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        ciudad = findViewById(R.id.tvNombreCiudad);
+        Bundle extras = getIntent().getExtras();
+        ciudadsel = (City) extras.get("ciudad");
 
 
         // Mostramos la barra de progreso y ejecutamos la llamada a la API
@@ -39,7 +45,9 @@ public class MainActivity extends BaseActivity implements CallInterface {
     // Realizamos la llamada y recogemos los datos en un objeto Root
     @Override
     public void doInBackground() {
-        root = Connector.getConector().get(Root.class,"&lat=39.5862518&lon=-0.5411163");
+
+        ciudad.setText(ciudadsel.getName());
+        root = Connector.getConector().get(Root.class,ciudadsel.getCoord().getCoord().toString());
     }
 
     // Una vez ya se ha realizado la llamada, ocultamos la barra de progreso y presentamos los datos

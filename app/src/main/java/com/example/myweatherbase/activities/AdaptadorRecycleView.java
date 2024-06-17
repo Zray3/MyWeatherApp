@@ -1,6 +1,7 @@
 package com.example.myweatherbase.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myweatherbase.API.Connector;
 import com.example.myweatherbase.R;
+import com.example.myweatherbase.activities.model.DetailedActivity;
 import com.example.myweatherbase.activities.model.List;
 import com.example.myweatherbase.activities.model.Root;
 import com.example.myweatherbase.base.ImageDownloader;
@@ -72,6 +74,13 @@ public class AdaptadorRecycleView
         holder.textViewDayOfWeek.setText(dateDayOfWeek.format(date));
         holder.textViewDay.setText(dateDay.format(date));
         holder.tvHora.setText(hour.format(date));
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), DetailedActivity.class);
+            intent.putExtra("extra", root);
+            intent.putExtra("numero", position);
+            view.getContext().startActivity(intent);
+        });
     }
 
     @Override

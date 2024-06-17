@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/fotoCiudad"
+        android:layout_width="367dp"
+        android:layout_height="296dp"
+        android:foreground="@mipmap/valencia_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052"
+        app:srcCompat="@mipmap/valencia"
+        tools:srcCompat="@mipmap/valencia" />
+
+    <Spinner
+        android:id="@+id/spinnerCiudades"
+        android:layout_width="295dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fotoCiudad"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="@+id/fotoCiudad"
+        app:layout_constraintTop_toBottomOf="@+id/fotoCiudad"
+        app:layout_constraintVertical_bias="0.302" />
+
+    <Button
+        android:id="@+id/b_selecciona"
+        android:layout_width="185dp"
+        android:layout_height="59dp"
+        android:text="Seleccionar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerCiudades"
+        app:layout_constraintStart_toStartOf="@+id/spinnerCiudades"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCiudades" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,4 +11,17 @@ public class City implements Serializable {
     public int timezone;
     public int sunrise;
     public int sunset;
+
+    public String getName() {
+        return name;
+    }
+
+    public Coord getCoord() {
+        return coord;
+    }
+
+    public City(String name, Coord coord) {
+        this.name = name;
+        this.coord = coord;
+    }
 }
