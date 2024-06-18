@@ -64,8 +64,8 @@ public class AdaptadorRecycleView
         holder.txtView.setText(root.list.get(position).weather.get(0).description);
         ImageDownloader.downloadImage(Parameters.ICON_URL_PRE + root.list.get(position).weather.get(0).icon + Parameters.ICON_URL_POST, holder.imageView);
         holder.tvTemp.setText("Temp: "+root.list.get(position).main.temp);
-        holder.tvMax.setText("Max: "+root.list.get(position).main.temp+"");
-        holder.tvMin.setText("Min: "+root.list.get(position).main.temp+"");
+        holder.tvMax.setText("Max: "+root.list.get(position).main.temp_max+"");
+        holder.tvMin.setText("Min: "+root.list.get(position).main.temp_min+"");
 
         Date date = new Date((long)root.list.get(position).dt*1000);
         SimpleDateFormat dateDayOfWeek = new SimpleDateFormat("EEEE");
